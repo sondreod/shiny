@@ -1,0 +1,37 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "shiny"
+authors = [{name = "Sondre S. Ødegård"}]
+license = {file = "LICENSE"}
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Topic :: System :: Systems Administration"
+]
+dynamic = ["version", "description"]
+
+[dev-dependencies]
+black = {}
+pytest = {}
+tox = {}
+pyinstaller = {}
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+isolated_build = True
+envlist = py{39}
+
+[testenv]
+deps = 
+    pytest >= 3.0.0, <4
+    numpy
+    black
+commands =
+    black .
+    pytest
+"""
